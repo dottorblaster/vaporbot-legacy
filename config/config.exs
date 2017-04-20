@@ -29,18 +29,17 @@ use Mix.Config
 #
 #     import_config "#{Mix.env}.exs"
 
+config :nadia,
+  token: "thisisasamplestring"
+
 config :sugar, router: Vaporbot.Router
 
 config :sugar, Vaporbot.Router,
   http: [
-    port: 8080
+    port: 80
   ],
-  https: false
-  
-  
-#   [
-#     port: 443,
-#     password: "toplel",
-# 	keyfile: "/home/blaster/Desktop/projects/vaporbot/key.pem",
-# 	certfile: "/home/blaster/Desktop/projects/vaporbot/cert.pem"
-#   ]
+  https: [
+    port: 443,
+    keyfile: "/path/to/privkey.key",
+    certfile: "/path/to/pubcert.pem"
+  ]

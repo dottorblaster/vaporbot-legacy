@@ -3,5 +3,6 @@ defmodule Vaporbot.Router do
     alias Vaporbot.Controllers.Vapor
 
     get "/", Vapor, :root
+    post "/vaporfont", Vapor, :vaporfont
     post "/webhook", Vapor, :webhook
 end
