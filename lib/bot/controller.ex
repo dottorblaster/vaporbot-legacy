@@ -10,15 +10,19 @@ defmodule Vaporbot.Controllers.Vapor do
     end
 
     def webhook(conn, []) do
-        article = %Nadia.Model.InlineQueryResult.Article{}
-        %{"id" => id, "query" => query} = conn.params["inline_query"]
-        vaporizedText = Handler.parse(query)
-        IO.puts("Query: #{inspect query}")
-        Nadia.answer_inline_query(id, [%{ article | title: vaporizedText,
-            id: "1",
-            description: vaporizedText,
-            input_message_content: %{ message_text: vaporizedText }
-        }])
+        if conn.params["inline_query"] != nil do
+            article = %Nadia.Model.InlineQueryResult.Article{}
+
+            %{"id" => id, "query" => query} = conn.params["inline_query"]
+            vaporizedText = Handler.parse(query)
+            IO.puts("Query: #{inspect query}")
+
+            Nadia.answer_inline_query(id, [%{ article | title: vaporizedText,
+                id: "1",
+                description: vaporizedText,
+                input_message_content: %{ message_text: vaporizedText }
+            }])
+        end
 
         conn |> json(%{status: true})
     end
