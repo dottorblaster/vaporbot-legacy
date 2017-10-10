@@ -101,7 +101,7 @@ defmodule Handler do
     end
 
     def parse(text) do
-        String.codepoints(text)
+        String.graphemes(text)
         |> Enum.map(fn x -> glyph x end)
         |> Enum.join
     end
